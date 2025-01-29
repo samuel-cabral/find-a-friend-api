@@ -2,16 +2,12 @@ import { FastifyRequest, FastifyReply } from 'fastify'
 import { z } from 'zod'
 import { makeRegisterOrganizationUseCase } from '@/use-cases/factories/make-register-organization-use-case'
 import { OrganizationAlreadyExistsError } from '@/use-cases/errors/organization-already-exists-error'
+import { registerBodySchema, RegisterBodySchema } from './schemas'
 
-export async function register(request: FastifyRequest, reply: FastifyReply) {
-  const registerBodySchema = z.object({
-    name: z.string(),
-    email: z.string().email(),
-    password: z.string().min(6),
-    whatsapp: z.string(),
-    address: z.string(),
-  })
-
+export async function register(
+  request: FastifyRequest<{ Body: RegisterBodySchema }>,
+  reply: FastifyReply,
+) {
   try {
     const { name, email, password, whatsapp, address } = registerBodySchema.parse(
       request.body,
@@ -34,7 +30,10 @@ export async function register(request: FastifyRequest, reply: FastifyReply) {
     }
 
     if (err instanceof z.ZodError) {
-      return reply.status(400).send({ message: 'Validation error.', issues: err.format() })
+      return reply.status(400).send({ 
+        message: 'Validation error.',
+        issues: err.format() 
+      })
     }
 
     throw err

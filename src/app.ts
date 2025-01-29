@@ -32,11 +32,39 @@ app.register(fastifySwagger, {
       description: 'API for pet adoption application',
       version: '1.0.0',
     },
+    tags: [
+      { name: 'Organizations', description: 'Organization related endpoints' },
+    ],
+    components: {
+      schemas: {
+        Error: {
+          type: 'object',
+          properties: {
+            message: { type: 'string' },
+          },
+        },
+        ValidationError: {
+          type: 'object',
+          properties: {
+            message: { type: 'string' },
+            issues: {
+              type: 'object',
+              additionalProperties: true,
+            },
+          },
+        },
+      },
+    },
   },
 })
 
 app.register(fastifySwaggerUi, {
   routePrefix: '/docs',
+  uiConfig: {
+    docExpansion: 'list',
+    deepLinking: false,
+  },
+  staticCSP: true,
 })
 
 // Routes
