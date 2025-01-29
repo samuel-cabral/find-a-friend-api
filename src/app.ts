@@ -5,6 +5,7 @@ import fastifyJwt from '@fastify/jwt'
 import fastifyCookie from '@fastify/cookie'
 import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUi from '@fastify/swagger-ui'
+import { organizationsRoutes } from './http/controllers/organizations/routes'
 
 export const app = fastify()
 
@@ -37,6 +38,9 @@ app.register(fastifySwagger, {
 app.register(fastifySwaggerUi, {
   routePrefix: '/docs',
 })
+
+// Routes
+app.register(organizationsRoutes)
 
 // Error handling
 app.setErrorHandler((error, _, reply) => {
