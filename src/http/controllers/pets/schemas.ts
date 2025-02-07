@@ -107,4 +107,19 @@ export const getPetDetailsSchema: FastifySchema = {
       },
     },
   },
+}
+
+export const filterPetsSchema = {
+  querystring: {
+    type: 'object',
+    properties: {
+      city: { type: 'string' },
+      age: { type: 'number', nullable: true },
+      size: { type: 'string', enum: ['SMALL', 'MEDIUM', 'LARGE'], nullable: true },
+      energyLevel: { type: 'number', minimum: 1, maximum: 5, nullable: true },
+      independence: { type: 'string', enum: ['LOW', 'MEDIUM', 'HIGH'], nullable: true },
+      type: { type: 'string', enum: ['DOG', 'CAT'], nullable: true },
+    },
+    required: ['city'],
+  },
 } 
