@@ -22,6 +22,7 @@ describe('Get Pet Details Use Case', () => {
       independence: 'MEDIUM',
       type: 'DOG',
       organization_id: 'organization-1',
+      city: 'São Paulo',
     })
 
     const { pet } = await sut.execute({

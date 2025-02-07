@@ -1,3 +1,12 @@
+-- CreateEnum
+CREATE TYPE "Size" AS ENUM ('SMALL', 'MEDIUM', 'LARGE');
+
+-- CreateEnum
+CREATE TYPE "Independence" AS ENUM ('LOW', 'MEDIUM', 'HIGH');
+
+-- CreateEnum
+CREATE TYPE "Type" AS ENUM ('DOG', 'CAT');
+
 -- CreateTable
 CREATE TABLE "organizations" (
     "id" TEXT NOT NULL,
@@ -16,11 +25,12 @@ CREATE TABLE "pets" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
+    "city" TEXT NOT NULL,
     "age" INTEGER NOT NULL,
-    "size" TEXT NOT NULL,
+    "size" "Size" NOT NULL,
     "energy_level" INTEGER NOT NULL,
-    "independence" TEXT NOT NULL,
-    "type" TEXT NOT NULL,
+    "independence" "Independence" NOT NULL,
+    "type" "Type" NOT NULL,
     "created_at" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "organization_id" TEXT NOT NULL,
 
