@@ -36,7 +36,7 @@ This is the API for the Find a Friend application. This is an simple API to a pe
 
 ## Functional Requirements
 
-- [ ] It should be able to register a new pet.
+- [x] It should be able to register a new pet.
 - [ ] It should be able to list all available pets to adoption in a city.
 - [ ] It should be able to filter all pets by caracteristics.
 - [ ] It should be able to get details of a pet to adoption.

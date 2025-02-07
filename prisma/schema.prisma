@@ -21,16 +21,33 @@ model Organization {
   @@map("organizations")
 }
 
+enum Size {
+  SMALL
+  MEDIUM
+  LARGE
+}
+
+enum Independence {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum Type {
+  DOG
+  CAT
+}
+
 model Pet {
-  id           String   @id @default(uuid())
+  id           String       @id @default(uuid())
   name         String
   description  String
   age          Int
-  size         String
+  size         Size
   energy_level Int
-  independence String
-  type         String
-  created_at   DateTime @default(now())
+  independence Independence
+  type         Type
+  created_at   DateTime     @default(now())
 
   organization    Organization @relation(fields: [organization_id], references: [id])
   organization_id String
