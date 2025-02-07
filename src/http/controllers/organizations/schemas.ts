@@ -53,4 +53,51 @@ export const registerSchema: FastifySchema = {
       },
     },
   },
+}
+
+export const authenticateBodySchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(6),
+})
+
+export type AuthenticateBodySchema = z.infer<typeof authenticateBodySchema>
+
+export const authenticateSchema: FastifySchema = {
+  tags: ['Organizations'],
+  description: 'Authenticate as an organization',
+  body: {
+    type: 'object',
+    required: ['email', 'password'],
+    properties: {
+      email: { type: 'string', format: 'email' },
+      password: { type: 'string', minLength: 6 },
+    },
+  },
+  response: {
+    200: {
+      description: 'Successfully authenticated',
+      type: 'object',
+      properties: {
+        token: { type: 'string' },
+      },
+    },
+    400: {
+      description: 'Validation error',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+        issues: {
+          type: 'object',
+          additionalProperties: true,
+        },
+      },
+    },
+    401: {
+      description: 'Invalid credentials',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+    },
+  },
 } 
