@@ -10,5 +10,6 @@ export interface Organization {
 
 export interface OrganizationsRepository {
   findByEmail(email: string): Promise<Organization | null>
+  findById(id: string): Promise<Organization | null>
   create(data: Omit<Organization, 'id' | 'created_at'>): Promise<Organization>
 } 

@@ -3,7 +3,7 @@ export interface Pet {
   name: string
   description: string
   age: number
-  size: 'LOW' | 'MEDIUM' | 'LARGE'
+  size: 'SMALL' | 'MEDIUM' | 'LARGE'
   energy_level: number
   independence: 'LOW' | 'MEDIUM' | 'HIGH'
   type: 'DOG' | 'CAT'
