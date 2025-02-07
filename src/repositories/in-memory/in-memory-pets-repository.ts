@@ -1,18 +1,35 @@
 import { randomUUID } from 'node:crypto'
 import type { Pet, Prisma } from '@prisma/client'
-import { PetsRepository, FindManyFilters } from '../pets-repository'
+import { PetsRepository, FindManyFilters, PetWithOrganization } from '../pets-repository'
 
 export class InMemoryPetsRepository implements PetsRepository {
   public items: Pet[] = []
+  public organizations: { 
+    id: string
+    name: string
+    email: string
+    whatsapp: string
+    address: string
+    created_at: Date 
+  }[] = []
 
-  async findById(id: string): Promise<Pet | null> {
+  async findById(id: string): Promise<PetWithOrganization | null> {
     const pet = this.items.find(item => item.id === id)
     
     if (!pet) {
       return null
     }
 
-    return pet
+    const organization = this.organizations.find(org => org.id === pet.organization_id)
+
+    if (!organization) {
+      return null
+    }
+
+    return {
+      ...pet,
+      organization,
+    }
   }
 
   async findManyByCity(city: string): Promise<Pet[]> {

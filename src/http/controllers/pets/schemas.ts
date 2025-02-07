@@ -59,6 +59,7 @@ export const registerPetSchema: FastifySchema = {
 export const getPetDetailsSchema: FastifySchema = {
   tags: ['Pets'],
   description: 'Get details of a specific pet',
+  security: [{ bearerAuth: [] }],
   params: {
     type: 'object',
     required: ['id'],
@@ -77,6 +78,7 @@ export const getPetDetailsSchema: FastifySchema = {
             id: { type: 'string' },
             name: { type: 'string' },
             description: { type: 'string' },
+            city: { type: 'string' },
             age: { type: 'integer' },
             size: { type: 'string', enum: ['SMALL', 'MEDIUM', 'LARGE'] },
             energy_level: { type: 'integer' },
@@ -84,6 +86,17 @@ export const getPetDetailsSchema: FastifySchema = {
             type: { type: 'string', enum: ['DOG', 'CAT'] },
             organization_id: { type: 'string' },
             created_at: { type: 'string', format: 'date-time' },
+            organization: {
+              type: 'object',
+              properties: {
+                id: { type: 'string' },
+                name: { type: 'string' },
+                email: { type: 'string' },
+                whatsapp: { type: 'string' },
+                address: { type: 'string' },
+                created_at: { type: 'string', format: 'date-time' },
+              },
+            },
           },
         },
       },
@@ -97,6 +110,13 @@ export const getPetDetailsSchema: FastifySchema = {
           type: 'object',
           additionalProperties: true,
         },
+      },
+    },
+    403: {
+      description: 'Forbidden',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
       },
     },
     404: {

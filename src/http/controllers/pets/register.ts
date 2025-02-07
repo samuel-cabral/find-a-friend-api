@@ -6,14 +6,6 @@ export interface RegisterRequest {
   Body: RegisterPetBodySchema
 }
 
-declare module 'fastify' {
-  interface FastifyRequest {
-    user: {
-      sub: string
-    }
-  }
-}
-
 export async function register(
   request: FastifyRequest<RegisterRequest>,
   reply: FastifyReply,

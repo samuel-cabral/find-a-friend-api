@@ -21,6 +21,18 @@ model Organization {
   @@map("organizations")
 }
 
+model User {
+  id            String   @id @default(uuid())
+  name          String
+  email         String   @unique
+  password_hash String
+  whatsapp      String
+  birth_date    DateTime
+  created_at    DateTime @default(now())
+
+  @@map("users")
+}
+
 enum Size {
   SMALL
   MEDIUM

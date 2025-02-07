@@ -6,6 +6,8 @@ import fastifyCookie from '@fastify/cookie'
 import fastifySwagger from '@fastify/swagger'
 import fastifySwaggerUi from '@fastify/swagger-ui'
 import { organizationsRoutes } from './http/controllers/organizations/routes'
+import { usersRoutes } from './http/controllers/users/routes'
+import { petsRoutes } from './http/controllers/pets/routes'
 
 export const app = fastify()
 
@@ -69,6 +71,8 @@ app.register(fastifySwaggerUi, {
 
 // Routes
 app.register(organizationsRoutes)
+app.register(usersRoutes)
+app.register(petsRoutes)
 
 // Error handling
 app.setErrorHandler((error, _, reply) => {

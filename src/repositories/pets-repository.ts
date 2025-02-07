@@ -1,5 +1,16 @@
 import type { Pet, Prisma, Size, Independence, Type } from '@prisma/client'
 
+export interface PetWithOrganization extends Pet {
+  organization: {
+    id: string
+    name: string
+    email: string
+    whatsapp: string
+    address: string
+    created_at: Date
+  }
+}
+
 export interface FindManyFilters {
   city: string
   age?: number
@@ -11,7 +22,7 @@ export interface FindManyFilters {
 
 export interface PetsRepository {
   create(data: Prisma.PetUncheckedCreateInput): Promise<Pet>
-  findById(id: string): Promise<Pet | null>
+  findById(id: string): Promise<PetWithOrganization | null>
   findManyByCity(city: string): Promise<Pet[]>
   findManyWithFilters(filters: FindManyFilters): Promise<Pet[]>
 }

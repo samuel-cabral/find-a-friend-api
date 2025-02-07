@@ -14,6 +14,9 @@ export async function petsRoutes(app: FastifyInstance) {
     schema: registerPetSchema,
   }, register)
   app.get('/pets/city/:city', listPetsByCity)
-  app.get('/pets/:id', { schema: getPetDetailsSchema }, getPetDetails)
+  app.get<{ Params: { id: string } }>('/pets/:id', { 
+    onRequest: [verifyJwt],
+    schema: getPetDetailsSchema 
+  }, getPetDetails)
   app.get('/pets', { schema: filterPetsSchema }, filter)
 } 

@@ -45,12 +45,12 @@ This is the API for the Find a Friend application. This is an simple API to a pe
 
 ## Business Rules
 
-- [ ] To listing pets, informing the city name is mandatory.
-- [ ] An organization must have an address and a whatsapp number.
-- [ ] A pet must be linked to an organization.
-- [ ] The user who wants to adopt will be in touch with the organization by whatsapp.
-- [ ] All the filters, beyong the city name, are optional.
-- [ ] If an organization wants to access the application as admin, they must be signed in.
-- [ ] The user who wants to adopt a pet must be signed in.
-- [ ] The user who wants to adopt a pet must be at least 18 years old.
-- [ ] The user who wants to adopt a pet must have a whatsapp number.
+- [x] To listing pets, informing the city name is mandatory.
+- [x] An organization must have an address and a whatsapp number.
+- [x] A pet must be linked to an organization.
+- [x] The user who wants to adopt will be in touch with the organization by whatsapp.
+- [x] All the filters, beyond the city name, are optional.
+- [x] If an organization wants to access the application as admin, they must be signed in.
+- [x] The user who wants to adopt a pet must be signed in.
+- [x] The user who wants to adopt a pet must be at least 18 years old.
+- [x] The user who wants to adopt a pet must have a whatsapp number.
