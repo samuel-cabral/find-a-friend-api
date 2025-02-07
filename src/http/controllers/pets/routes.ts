@@ -1,6 +1,8 @@
 import { FastifyInstance } from 'fastify'
+
 import { register } from './register'
-import { registerPetSchema } from './schemas'
+import { getPetDetails } from './get-details'
+import { registerPetSchema, getPetDetailsSchema } from './schemas'
 import { verifyJwt } from '@/http/middlewares/verify-jwt'
 
 export async function petsRoutes(app: FastifyInstance) {
@@ -9,5 +11,10 @@ export async function petsRoutes(app: FastifyInstance) {
   app.post('/pets', {
     schema: registerPetSchema,
     handler: register,
+  })
+
+  app.get('/pets/:id', {
+    schema: getPetDetailsSchema,
+    handler: getPetDetails,
   })
 } 

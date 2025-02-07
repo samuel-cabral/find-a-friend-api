@@ -54,4 +54,57 @@ export const registerPetSchema: FastifySchema = {
       },
     },
   },
+}
+
+export const getPetDetailsSchema: FastifySchema = {
+  tags: ['Pets'],
+  description: 'Get details of a specific pet',
+  params: {
+    type: 'object',
+    required: ['id'],
+    properties: {
+      id: { type: 'string', format: 'uuid' },
+    },
+  },
+  response: {
+    200: {
+      description: 'Successful response',
+      type: 'object',
+      properties: {
+        pet: {
+          type: 'object',
+          properties: {
+            id: { type: 'string' },
+            name: { type: 'string' },
+            description: { type: 'string' },
+            age: { type: 'integer' },
+            size: { type: 'string', enum: ['SMALL', 'MEDIUM', 'LARGE'] },
+            energy_level: { type: 'integer' },
+            independence: { type: 'string', enum: ['LOW', 'MEDIUM', 'HIGH'] },
+            type: { type: 'string', enum: ['DOG', 'CAT'] },
+            organization_id: { type: 'string' },
+            created_at: { type: 'string', format: 'date-time' },
+          },
+        },
+      },
+    },
+    400: {
+      description: 'Validation error',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+        issues: {
+          type: 'object',
+          additionalProperties: true,
+        },
+      },
+    },
+    404: {
+      description: 'Pet not found',
+      type: 'object',
+      properties: {
+        message: { type: 'string' },
+      },
+    },
+  },
 } 
